@@ -31,11 +31,31 @@ public class _88_Merge_Sorted_Array {
         }
     }
 
+    public void merge2(int[] nums1, int m, int[] nums2, int n) {
+        m--;
+        n--;
+        for(int i = nums1.length - 1; i >= 0; i--){
+            if(n < 0) {
+                nums1[i] = nums1[m];
+                m--;
+            } else if (m < 0) {
+                nums1[i] = nums2[n];
+                n--;
+            } else if (nums1[m] <= nums2[n] ) {
+                nums1[i] = nums2[n];
+                n--;
+            } else if (nums1[m] > nums2[n] ) {
+                nums1[i] = nums1[m];
+                m--;
+            }
+        }
+    }
+
     public static void main(String[] args) {
         _88_Merge_Sorted_Array b = new _88_Merge_Sorted_Array();
         int[] arr1 = {1,2,3,0,0,0};
         int[] arr2 = {2,5,6};
-        b.merge(arr1, 3, arr2, 3 );
+        b.merge2(arr1, 3, arr2, 3 );
         System.out.println(Arrays.toString(arr1));
     }
 }
